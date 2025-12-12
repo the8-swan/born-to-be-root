@@ -117,3 +117,15 @@ I have devided sda5 into 7 logical partition
 2- swap : acts as an extra RAM when physical memory is full . it helps to prevent crashes when memory is full .
 
 3-home : it contains users files and personal data , it is separated so even you reinstall the OS your personal files stay safe .
+
+4-var : it stores files that change constantly like apt packages data , caches etc...
+
+5-srv : it is a place for data used by system services like web server ...
+
+6-tmp : it stores temporary files .
+
+7-var--log : it stores system logs , logs can grow very large so even if they fill up this partition , they won't freeze your entire system .
+
+### Security Policies:
+
+**Password policies : **
