@@ -75,3 +75,45 @@ I chose Debian over Rocky because it is way more easy for beginners - it has sim
 1- **A prior knowledge:** You need to already know some Linux basics to use the operating system comfortably.example : Terminal Basics, Package Management etc...
 
 2-**Steeper learning curve for Windows users:** because it relies more on the terminal.
+
+
+## Sitting up my system 
+
+### hostname 
+
+As a hostname for my machine i choosed user+42 . The hostname is the human-readable name assigned to a device (computer, server, phone, router, etc.) on a network.
+
+**To change the hostname permanently**
+
+open the following file and change the old hostname by the new one .
+
+``` 
+sudo nano /etc/hostname
+``` 
+
+### System users 
+
+I configured my root password and created a user with my login 
+
+### System Design Choices 
+
+#### Partitioning Scheme
+
+partitions schemes are methods for dividing storages (disks …) into logical sections , the most common schemes are : MBR and GPT .
+
+
+I have created two main partitions: the boot partition and sda5. The boot partition holds essential files to launch the operating system. It's where the BIOS loads the kernel when you start your system.
+The second partition (sda5) is encrypted. It uses LVM to divide it into logical volumes.
+
+**Why i choose this structure:**
+
+Sda5 is an encrypted partition, so I needed a separate unencrypted partition (/boot) to store OS files. The BIOS and bootloader cannot decrypt encrypted partitions, so they need direct access to the files required to load the kernel into memory.
+
+#### My logical volumes : 
+I have devided sda5 into 7 logical partition 
+
+1- root : contains the core of the operating system (kernel files , libraries , os binaries etc...)
+
+2- swap : acts as an extra RAM when physical memory is full . it helps to prevent crashes when memory is full .
+
+3-home : it contains users files and personal data , it is separated so even you reinstall the OS your personal files stay safe .
