@@ -1,6 +1,6 @@
 This project has been created as part of the 42 curriculum by : **obakri**
 # born2beroot 
-## Overview
+## Description 
 
 This project aims to introduce you to the world of virtualization through creating a debian/rocky machine in VirtualBox (or UTM if you can’t use VirtualBox) using specific instructions.By the end of this project , you'll know how to se up your own OS while implementing strict rules like : user management, SSH configuration, firewall rules and password policies .
 
@@ -128,4 +128,92 @@ I have devided sda5 into 7 logical partition
 
 ### Security Policies:
 
-**Password policies : **
+**Password policies :**
+
+as the subject required , we should set up a strong passowrd policy by doing the following : it has to expire every 30 days , The minimum number of days allowed before the modification of a password will be set to 2 and the user has to receive a warning message 7 days before their password expires .
+we can do that by modifing from 
+```
+nano /etc/login.defs
+```
+then i have installed the password quality library: to strengthten the password policy 
+```
+sudo apt install libpam-pwquality
+```
+and i've modified in the **common-password** file to include extra policies like minimum length, complexity requirements, etc:
+```
+nano /etc/pam.d/common-password
+```
+
+### SSH (Secure Shell)
+
+SSH is a protocol for secure remote login from one computer to another. It provides strong authentication options and protects communication security and integrity with encryption.
+
+By default, SSH uses port 22. The subject requires changing it to port 4242 for security reasons (obscurity and avoiding automated attacks on default ports).
+
+**Configuration steps:**
+
+1. Modified the SSH daemon configuration:
+```
+nano /etc/ssh/sshd_config
+```
+Changed `Port 22` to `Port 4242` and set `PermitRootLogin no` to disable root login via SSH.
+
+2. Also updated the client configuration:
+```
+nano /etc/ssh/ssh_config
+```
+Changed the port here too for consistency.
+
+3. Restarted the SSH service to apply changes:
+```
+sudo systemctl restart sshd
+```
+### Firewall 
+
+A firewall is a network security system that monitors and controls incoming/outgoing traffic between trusted and untrusted networks (like the internet), acting as a digital security guard by filtering data based on predefined rules to block unauthorized access.
+
+**What it does:**
+
+1. Examines all incoming and outgoing data
+2. Compares traffic to a set of rules
+3. Blocks dangerous or suspicious activity
+4. Logs network activity
+
+#### UFW vs firewalld
+
+| Feature | UFW (Uncomplicated Firewall) | firewalld |
+|---------|------------------------------|-----------|
+| **Default on** | Debian, Ubuntu | Rocky Linux, RHEL, CentOS |
+| **Complexity** | Simple, beginner-friendly | More complex, feature-rich |
+| **Configuration** | Command-line based | Supports CLI, GUI, and zones |
+| **Syntax** | Very simple (`ufw allow 4242`) | More verbose (`firewall-cmd --add-port=4242/tcp`) |
+| **Use case** | Desktop/simple servers | Enterprise servers, complex setups |
+
+**My choice:** I used UFW on Debian because it's simpler and perfect for this project's requirements—just needed to allow port 4242 for SSH.
+
+### User Management
+
+**Users created:**
+- `root`: System administrator with full privileges
+- `obakri` (or your login): Regular user account
+
+**Groups:**
+- Created `user42` group as required
+- Added my user to both `user42` and `sudo` groups for administrative privileges
+
+**Commands used:**
+```bash
+# Create new user
+sudo adduser username
+
+# Create new group
+sudo groupadd user42
+
+# Add user to groups
+sudo usermod -aG sudo,user42 obakri
+
+# Check user groups
+groups obakri
+```
+
+
