@@ -215,5 +215,37 @@ sudo usermod -aG sudo,user42 obakri
 # Check user groups
 groups obakri
 ```
+###AppArmor vs SELinux
+Both AppArmor and SELinux are Mandatory Access Control (MAC) systems that restrict what programs can do, even with root privileges.
+The main difference is that AppArmor (used on Debian) is path-based and simpler to configure it controls access based on file paths. 
+SELinux (used on Rocky) is label-based and more complex, using security contexts for extremely granular control.
+ AppArmor is beginner-friendly and good enough for most use cases, while SELinux offers enterprise-grade security but has a steeper learning curve. 
+For born2beroot, Debian's AppArmor is easier to work with while still providing solid security.
+## Instructions
 
+### How to run the project:
 
+1. Clone this repository
+2. Import the `.vdi` file into VirtualBox
+3. Start the VM
+4. Connect via SSH: `ssh obakri@localhost -p 4242`
+### Checking the configuration:
+
+- Check password policy: `sudo chage -l username`
+- Check sudo config: `sudo visudo`
+- Check UFW status: `sudo ufw status`
+- Check monitoring script: the script runs every 10 minutes via cron
+
+## Resources
+
+**Documentation:**
+- [Debian Documentation](https://www.debian.org/doc/)
+- [SSH Configuration Guide](...)
+- [UFW Tutorial](...)
+
+**AI Usage:**
+- Used Claude AI for:
+  - Explaining concepts (virtualization, partitioning schemes, MAC systems)
+  - Debugging configuration issues
+  - Writing/structuring this README
+  - Understanding password policy advantages/disadvantages
