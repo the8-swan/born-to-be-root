@@ -29,7 +29,7 @@ VirtualBox and UTM are both Type-2 hypervisors (run on top of a host OS) .the ma
 For this project, I chose VirtualBox for two reasons: I've used it before and since I'm running Linux as my host OS, VirtualBox is the optimal solution.
 
 ## What is OS ?
-An operating system acts as an intermediary between the computer hardware and the user. In short, it is an interface between computer hardware and the user.it is a collection of software that manages a computer’s hardware and applications by allocating resources, including memory, CPU, input/output devices and file storage.
+An operating system acts as an intermediary between the computer hardware and the user. In short, it is an interface between computer hardware and the user. It is a collection of software that manages a computer’s hardware and applications by allocating resources, including : memory, CPU, input/output devices and file storage.
 
 **OS components :**
 
@@ -72,7 +72,7 @@ I chose Debian over Rocky because it is way more easy for beginners - it has sim
 
 **Debian disadvantages :**
 
-1- **A prior knowledge:** You need to already know some Linux basics to use the operating system comfortably.example : Terminal Basics, Package Management etc...
+1- **A prior knowledge:** You need to already know some Linux basics to use the operating system comfortably example : Terminal Basics, Package Management etc...
 
 2-**Steeper learning curve for Windows users:** because it relies more on the terminal.
 
@@ -81,7 +81,7 @@ I chose Debian over Rocky because it is way more easy for beginners - it has sim
 
 ### hostname 
 
-As a hostname for my machine i choosed user+42 . The hostname is the human-readable name assigned to a device (computer, server, phone, router, etc.) on a network.
+As a hostname for my machine i choosed obakri42 . The hostname is the human-readable name assigned to a device (computer, server, phone, router, etc.) on a network.
 
 **To change the hostname permanently**
 
@@ -240,12 +240,15 @@ For born2beroot, Debian's AppArmor is easier to work with while still providing 
 
 **Documentation:**
 - [Debian Documentation](https://www.debian.org/doc/)
-- [SSH Configuration Guide](...)
-- [UFW Tutorial](...)
+- [SSH Configuration Guide](https://www.ssh.com/academy/ssh)
+- [UFW Tutorial](https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands)
+- [Disk partiyioning](https://www.geeksforgeeks.org/linux-unix/disk-partitioning-in-linux/)
+- [LVM](https://www.digitalocean.com/community/tutorials/an-introduction-to-lvm-concepts-terminology-and-operations)
+- [APT vs APTITUDE](https://www.debian.org/doc/manuals/debian-faq/pkgtools.en.html)
+
 
 **AI Usage:**
 - Used Claude AI for:
   - Explaining concepts (virtualization, partitioning schemes, MAC systems)
-  - Debugging configuration issues
-  - Writing/structuring this README
+  - structuring this README file
   - Understanding password policy advantages/disadvantages
